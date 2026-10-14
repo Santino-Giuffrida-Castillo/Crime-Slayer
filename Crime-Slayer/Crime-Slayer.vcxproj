@@ -21,14 +21,20 @@
   <ItemGroup>
     <ClCompile Include="..\src\Asteroid.cpp" />
     <ClCompile Include="..\src\Bullet.cpp" />
+    <ClCompile Include="..\src\Credits.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
+    <ClCompile Include="..\src\HowPlay.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\MainMenu.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Asteroid.h" />
     <ClInclude Include="..\src\Bullet.h" />
+    <ClInclude Include="..\src\Credits.h" />
     <ClInclude Include="..\src\Game.h" />
+    <ClInclude Include="..\src\HowPlay.h" />
+    <ClInclude Include="..\src\MainMenu.h" />
     <ClInclude Include="..\src\Player.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -123,12 +129,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)libs\raylib-6.0_win64_msvc16\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

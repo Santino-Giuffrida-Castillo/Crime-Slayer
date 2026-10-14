@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Crime-Slayer/Crime-Slayer.vcxproj" />
+  <Project Path="Crime-Slayer/Crime-Slayer.vcxproj" Id="51f826d3-3d48-45a3-962d-fc2c38d502bb" />
 </Solution>
