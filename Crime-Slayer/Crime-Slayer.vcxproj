@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,21 +21,27 @@
   <ItemGroup>
     <ClCompile Include="..\src\Asteroid.cpp" />
     <ClCompile Include="..\src\Bullet.cpp" />
+    <ClCompile Include="..\src\Button.cpp" />
     <ClCompile Include="..\src\Credits.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\HowPlay.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MainMenu.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
+    <ClCompile Include="..\src\ScreenManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Asteroid.h" />
     <ClInclude Include="..\src\Bullet.h" />
+    <ClInclude Include="..\src\Button.h" />
+    <ClInclude Include="..\src\Const.h" />
     <ClInclude Include="..\src\Credits.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\HowPlay.h" />
     <ClInclude Include="..\src\MainMenu.h" />
     <ClInclude Include="..\src\Player.h" />
+    <ClInclude Include="..\src\Screen.h" />
+    <ClInclude Include="..\src\ScreenManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
