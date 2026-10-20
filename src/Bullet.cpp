@@ -1,6 +1,6 @@
 #include "Bullet.h"
 #include <raymath.h>
-#include "Const.h"
+#include <iostream>
 Bullet initBullet()
 {
 	Bullet bullet;
@@ -15,18 +15,31 @@ Bullet initBullet()
 	return bullet;
 }
 
-void moveBullet(Bullet& bullet)
+void moveBullet(Bullet bullet[maxBullets])
 {
+	for (int i = 0; i < maxBullets; i++)
+	{
+		if (bullet[i].isActive)
+		{
+			bullet[i].pos.x += bullet[i].lookDir.x * bulletSpeed * GetFrameTime();
+			bullet[i].pos.y += bullet[i].lookDir.y * bulletSpeed * GetFrameTime();
+		}
 
-	bullet.pos.x += bullet.lookDir.x * bulletSpeed * GetFrameTime();
-	bullet.pos.y += bullet.lookDir.y * bulletSpeed * GetFrameTime();
+	}
+
 
 }
 
-void drawBullet(Bullet& bullet)
+void drawBullet(Bullet bullet[maxBullets])
 {
-	if (bullet.isActive)
+	for (int i = 0; i < maxBullets; i++)
 	{
-		DrawCircleV(bullet.pos, bullet.radius, BLUE);
+		
+		if (bullet[i].isActive)
+		{
+			std::cout << "homero chino";
+			DrawCircleV(bullet[i].pos, bullet[i].radius, BLUE);
+		}
 	}
+
 }

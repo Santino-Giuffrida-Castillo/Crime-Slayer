@@ -1,5 +1,6 @@
 #pragma once
 #include <raylib.h>
+#include "Const.h"
 struct Bullet
 {
 	Vector2 lookDir;
@@ -10,5 +11,5 @@ struct Bullet
 };
 
 Bullet initBullet();
-void moveBullet(Bullet& bullet);
-void drawBullet(Bullet& bullet);
+void moveBullet(Bullet bullet[maxBullets]);
+void drawBullet(Bullet bullet[maxBullets]);
