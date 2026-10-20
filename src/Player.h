@@ -1,5 +1,6 @@
 #pragma once
 #include "Bullet.h"
+#include "Const.h"
 #include <raylib.h>
 struct Player
 {
@@ -13,4 +14,4 @@ struct Player
 Player initPlayer();
 void movePlayer(Player& player);
 void drawPlayer(Player player);
-void shoot(Bullet& bullet, Player player);
+void shoot(Bullet bullet[maxBullets], Player player);

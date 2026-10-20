@@ -1,6 +1,6 @@
 #include <Player.h>
 #include <raymath.h>
-#include "Const.h"
+
 Player initPlayer()
 {
 	Player player;
@@ -65,16 +65,25 @@ void drawPlayer(Player player)
 	DrawCircleV(player.pos, player.radius, RED);
 }
 
-void shoot(Bullet& bullet, Player player)
+void shoot(Bullet bullet[maxBullets], Player player)
 {
 	Vector2 mousePos;
 	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
 		mousePos = GetMousePosition();
-		bullet.pos.x = player.pos.x;
-		bullet.pos.y = player.pos.y;
-		bullet.lookDir = Vector2Subtract(mousePos, bullet.pos);
-		bullet.lookDir = Vector2Normalize(bullet.lookDir);
-		bullet.isActive = true;
+		for (int i = 0; i < maxBullets; i++)
+		{
+			if (!bullet[i].isActive)
+			{
+				bullet[i].pos.x = player.pos.x;
+				bullet[i].pos.y = player.pos.y;
+				bullet[i].lookDir = Vector2Subtract(mousePos, bullet[i].pos);
+				bullet[i].lookDir = Vector2Normalize(bullet[i].lookDir);
+				bullet[i].isActive = true;
+				break;
+			}
+
+		}
+	
 	}
 }

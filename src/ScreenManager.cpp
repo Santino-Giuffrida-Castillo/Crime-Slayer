@@ -5,14 +5,17 @@
 #include "Credits.h"
 #include "Game.h"
 #include "Const.h"
+#include "Asteroid.h"
 
 void showScreen(Screen& actualScreen, bool& inGame)
 {
 	InitWindow(screenWidth, screenHigh, "Crime-Slayer");
 	Player player;
-	Bullet bullets[20];
+	Bullet bullets[maxBullets];
+	BigAsteroid asteroids[maxBullets];
+	float count = 0;
 
-	initGame(player, bullets[1]);
+	initGame(player, bullets, asteroids);
 
 	while (!WindowShouldClose() && inGame)
 	{
@@ -25,7 +28,8 @@ void showScreen(Screen& actualScreen, bool& inGame)
 		else if (actualScreen == Screen::PLAY)
 		{
 			ClearBackground(BLACK);
-			playGame(player, bullets[1]);
+			playGame(player, bullets, asteroids, count);
+			count += GetFrameTime();
 		}
 		else if (actualScreen == Screen::HOW_PLAY)
 		{
