@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Screen.h"
-
+#include <raymath.h>
+#include <iostream>
 void initGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets])
 {
 	player = initPlayer();
@@ -14,7 +15,12 @@ void initGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[m
 		for (int j = 0; j < 2; j++)
 		{
 			asteroids[i].midAsteroids[j] = initMidAsteroid(asteroids[i], j);
-			asteroids[i].midAsteroids[j].littleAsteroids[j] = initLittleAsteroid(asteroids[i].midAsteroids[j], j);
+			for (int k = 0; k < 2; k++)
+			{
+				asteroids[i].midAsteroids[j].littleAsteroids[k] = initLittleAsteroid(asteroids[i].midAsteroids[j], k);
+			}
+
+
 		}
 	}
 
@@ -32,12 +38,15 @@ void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[m
 	checkIfPlayerOutScreen(player);
 	checkIfBulletOutScreen(bullet);
 	checkIfBigAsteroidOutScreen(asteroids);
+	checkOneBigAsteroidCollisions(player, bullet, asteroids);
 
 
 	shoot(bullet, player);
 	spawAsteroid(asteroids, count);
 
 	BeginDrawing();
+	ClearBackground(BLACK);
+
 
 	drawPlayer(player);
 	drawBullet(bullet);
@@ -99,6 +108,10 @@ void checkIfBigAsteroidOutScreen(BigAsteroid asteroids[maxBullets])
 {
 	for (int i = 0; i < maxBullets; i++)
 	{
+		if (!asteroids[i].isActive)
+		{
+			continue;
+		}
 		if ((asteroids[i].pos.x - asteroids[i].radius) > screenWidth)
 		{
 			asteroids[i].pos.x = 0 + asteroids[i].radius;
@@ -163,5 +176,145 @@ void checkIfLittleAsteroidOutScreen(LittleAsteroid asteroids[2], int index)
 		asteroids[index].pos.y = screenHigh - asteroids[index].radius;
 	}
 }
+
+void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], BigAsteroid asteroid[maxBullets])
+{
+	//primero el jugador
+	float distance = 0;
+	for (int i = 0; i < maxBullets; i++)
+	{
+		distance = Vector2Distance(player.pos, asteroid[i].pos);
+
+		if (asteroid[i].isActive && !asteroid[i].isHit)
+		{
+
+			if (distance <= player.radius + asteroid[i].radius)
+			{
+				player.lives--;
+				asteroid[i] = initAsteroid();
+			}
+
+
+		}
+		for (int j = 0; j < 2; j++)
+		{
+			distance = Vector2Distance(player.pos, asteroid[i].midAsteroids[j].pos);
+
+			if (asteroid[i].midAsteroids[j].isActive && !asteroid[i].midAsteroids[j].isHit)
+			{
+
+				if (distance <= player.radius + asteroid[i].midAsteroids[j].radius)
+				{
+					player.lives--;
+					asteroid[i].midAsteroids[j] = initMidAsteroid(asteroid[i], j);
+				}
+
+
+			}
+
+			for (int k = 0; k < 2; k++)
+			{
+				distance = Vector2Distance(player.pos, asteroid[i].midAsteroids[j].littleAsteroids[k].pos);
+
+				if (asteroid[i].midAsteroids[j].littleAsteroids[k].isActive && !asteroid[i].midAsteroids[j].littleAsteroids[k].isHit)
+				{
+
+					if (distance <= player.radius + asteroid[i].midAsteroids[j].littleAsteroids[k].radius)
+					{
+						player.lives--;
+						asteroid[i].midAsteroids[j].littleAsteroids[k] = initLittleAsteroid(asteroid[i].midAsteroids[j], k);
+					}
+
+
+				}
+			}
+		}
+	}
+	//ahora bala con asteroide grande
+
+	for (int i = 0; i < maxBullets; i++)
+	{
+		if (asteroid[i].isActive && !asteroid[i].isHit)
+		{
+			for (int j = 0; j < maxBullets; j++)
+			{
+				distance = Vector2Distance(bullets[j].pos, asteroid[i].pos);
+				if (bullets[j].isActive && distance <= bullets[j].radius + asteroid[i].radius)
+				{
+					asteroid[i].isHit = true;
+					for (int k = 0; k < 2; k++)
+					{
+						asteroid[i].midAsteroids[k] = initMidAsteroid(asteroid[i], k);
+						asteroid[i].midAsteroids[k].isHit = false;
+					}
+					bullets[j].isActive = false;
+				}
+			}
+		}
+	}
+	//chequeo medianos
+	for (int i = 0; i < maxBullets; i++)
+	{
+		if (asteroid[i].isActive && asteroid[i].isHit)
+		{
+
+			for (int j = 0; j < maxBullets; j++)
+			{
+				for (int k = 0; k < 2; k++)
+				{
+					if (asteroid[i].midAsteroids[k].isActive && !asteroid[i].midAsteroids[k].isHit)
+					{
+						distance = Vector2Distance(bullets[j].pos, asteroid[i].midAsteroids[k].pos);
+
+						if (bullets[j].isActive && distance <= bullets[j].radius + asteroid[i].midAsteroids[k].radius)
+						{
+							asteroid[i].midAsteroids[k].isHit = true;
+							for (int l = 0; l < 2; l++)
+							{
+								asteroid[i].midAsteroids[k].littleAsteroids[l] = initLittleAsteroid(asteroid[i].midAsteroids[k], l);
+								asteroid[i].midAsteroids[k].littleAsteroids[l].isHit = false;
+							}
+							bullets[j].isActive = false;
+						}
+					}
+				}
+			}
+		}
+
+	}
+		//chequeo chiquitos
+		for (int i = 0; i < maxBullets; i++)
+		{
+
+			if (asteroid[i].isActive && asteroid[i].isHit)
+			{
+
+				for (int j = 0; j < maxBullets; j++)
+				{
+					for (int k = 0; k < 2; k++)
+					{
+						if (asteroid[i].midAsteroids[k].isActive && asteroid[i].midAsteroids[k].isHit)
+						{
+
+							for (int l = 0; l < 2; l++)
+							{
+								distance = Vector2Distance(bullets[j].pos, asteroid[i].midAsteroids[k].littleAsteroids[l].pos);
+
+								if (bullets[j].isActive && distance <= bullets[j].radius + asteroid[i].midAsteroids[k].littleAsteroids[l].radius && !asteroid[i].midAsteroids[k].littleAsteroids[l].isHit)
+								{
+									asteroid[i].midAsteroids[k].littleAsteroids[l].isHit = true;
+									bullets[j].isActive = false;
+								}
+							}
+						}
+
+					}
+				}
+			}
+		}
+	
+
+}
+
 
 

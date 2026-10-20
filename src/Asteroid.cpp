@@ -12,23 +12,36 @@ BigAsteroid initAsteroid()
 	asteroid.vel.y = 0;
 	asteroid.radius = 80;
 	asteroid.isActive = false;
+	asteroid.isHit = false;
 	return asteroid;
 }
 
 MidAsteroid initMidAsteroid(BigAsteroid& asteroid, int index)
 {
 
-	asteroid.midAsteroids[index].lookDir.x = asteroid.lookDir.x;
+
 	asteroid.midAsteroids[index].lookDir.y = asteroid.lookDir.y;
-	asteroid.midAsteroids[index].pos.x = asteroid.pos.x;
-	asteroid.midAsteroids[index].pos.y = asteroid.pos.y;
+
 	if (index % 2 == 0)
 	{
-		asteroid.midAsteroids[index].vel.x = -asteroid.pos.x;
-		asteroid.midAsteroids[index].vel.y = asteroid.pos.y;
+		asteroid.midAsteroids[index].lookDir.x = -asteroid.lookDir.x;
+		asteroid.midAsteroids[index].pos.x = asteroid.pos.x;
+		asteroid.midAsteroids[index].pos.y = asteroid.pos.y;
+		asteroid.midAsteroids[index].vel.x = -asteroid.vel .x;
+		asteroid.midAsteroids[index].vel.y = asteroid.vel.y;
 	}
-	asteroid.midAsteroids[index].radius = 10;
-	asteroid.midAsteroids[index].isActive = false;
+	else
+	{
+		asteroid.midAsteroids[index].lookDir.x = asteroid.lookDir.x;
+		asteroid.midAsteroids[index].pos.x = asteroid.pos.x + asteroid.midAsteroids[index].radius;
+		asteroid.midAsteroids[index].pos.y = asteroid.pos.y + asteroid.midAsteroids[index].radius;
+		asteroid.midAsteroids[index].vel.x = asteroid.vel.x;
+		asteroid.midAsteroids[index].vel.y = asteroid.vel.y;
+	}
+
+	asteroid.midAsteroids[index].radius = 40;
+	asteroid.midAsteroids[index].isActive = true;
+	asteroid.midAsteroids[index].isHit = true;
 
 	return asteroid.midAsteroids[index];
 }
@@ -36,15 +49,24 @@ LittleAsteroid initLittleAsteroid(MidAsteroid& asteroid, int index)
 {
 	asteroid.littleAsteroids[index].lookDir.x = asteroid.lookDir.x;
 	asteroid.littleAsteroids[index].lookDir.y = asteroid.lookDir.y;
-	asteroid.littleAsteroids[index].pos.x = asteroid.pos.x;
-	asteroid.littleAsteroids[index].pos.y = asteroid.pos.y;
+
 	if (index % 2 == 0)
 	{
-		asteroid.littleAsteroids[index].vel.x = -asteroid.pos.x;
-		asteroid.littleAsteroids[index].vel.y = asteroid.pos.y;
+		asteroid.littleAsteroids[index].pos.x = asteroid.pos.x;
+		asteroid.littleAsteroids[index].pos.y = asteroid.pos.y;
+		asteroid.littleAsteroids[index].vel.x = -asteroid.vel.x;
+		asteroid.littleAsteroids[index].vel.y = asteroid.vel.y;
 	}
-	asteroid.littleAsteroids[index].radius = 10;
-	asteroid.littleAsteroids[index].isActive = false;
+	else
+	{
+		asteroid.littleAsteroids[index].pos.x = asteroid.pos.x + asteroid.littleAsteroids[index].radius;
+		asteroid.littleAsteroids[index].pos.y = asteroid.pos.y + asteroid.littleAsteroids[index].radius;
+		asteroid.littleAsteroids[index].vel.x = asteroid.vel.x;
+		asteroid.littleAsteroids[index].vel.y = asteroid.vel.y;
+	}
+	asteroid.littleAsteroids[index].radius = 20;
+	asteroid.littleAsteroids[index].isActive = true;
+	asteroid.littleAsteroids[index].isHit = true;
 
 	return asteroid.littleAsteroids[index];
 }
@@ -96,9 +118,14 @@ void drawAsteroid(BigAsteroid asteroids[maxBullets])
 {
 	for (int i = 0; i < maxBullets; i++)
 	{
-		if (asteroids[i].isActive)
+
+		if (asteroids[i].isActive )
 		{
-			DrawCircleV(asteroids[i].pos, asteroids[i].radius, BLUE);
+			if (!asteroids[i].isHit)
+			{
+				DrawCircleV(asteroids[i].pos, asteroids[i].radius, BLUE);
+			}
+			
 			for (int j = 0; j < 2; j++)
 			{
 				if (asteroids[i].midAsteroids[j].isActive)
@@ -118,7 +145,7 @@ void drawAsteroid(BigAsteroid asteroids[maxBullets])
 
 void drawAsteroid(MidAsteroid asteroids[2], int index)
 {
-	if (asteroids[index].isActive)
+	if (asteroids[index].isActive && !asteroids[index].isHit)
 	{
 		DrawCircleV(asteroids[index].pos, asteroids[index].radius, BLUE);
 	}
@@ -126,7 +153,7 @@ void drawAsteroid(MidAsteroid asteroids[2], int index)
 
 void drawAsteroid(LittleAsteroid asteroids[2], int index)
 {
-	if (asteroids[index].isActive)
+	if (asteroids[index].isActive && !asteroids[index].isHit)
 	{
 		DrawCircleV(asteroids[index].pos, asteroids[index].radius, BLUE);
 	}
@@ -146,7 +173,8 @@ void spawAsteroid(BigAsteroid asteroids[maxBullets], float& count)
 				asteroids[i].lookDir.x = static_cast<float>(rand() % 360);
 				asteroids[i].lookDir.y = static_cast<float>(rand() % 360);
 				asteroids[i].isActive = true;
-				
+				asteroids[i].isHit = false;
+
 				break;
 			}
 			else
@@ -160,25 +188,5 @@ void spawAsteroid(BigAsteroid asteroids[maxBullets], float& count)
 	}
 }
 
-void spawMidAsteroid(MidAsteroid asteroids[2], int index)
-{
-	if (!asteroids[index].isActive)
-	{
-		asteroids[index].lookDir.x = static_cast<float>(rand() % 360);
-		asteroids[index].lookDir.y = static_cast<float>(rand() % 360);
-		asteroids[index].isActive = true;
 
-	}
 
-}
-void spawLittleAsteroid(LittleAsteroid asteroids[2], int index)
-{
-	if (!asteroids[index].isActive)
-	{
-		asteroids[index].lookDir.x = static_cast<float>(rand() % 360);
-		asteroids[index].lookDir.y = static_cast<float>(rand() % 360);
-		asteroids[index].isActive = true;
-
-	}
-
-}

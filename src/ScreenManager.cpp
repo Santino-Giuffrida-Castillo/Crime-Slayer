@@ -27,7 +27,6 @@ void showScreen(Screen& actualScreen, bool& inGame)
 		}
 		else if (actualScreen == Screen::PLAY)
 		{
-			ClearBackground(BLACK);
 			playGame(player, bullets, asteroids, count);
 			count += GetFrameTime();
 		}

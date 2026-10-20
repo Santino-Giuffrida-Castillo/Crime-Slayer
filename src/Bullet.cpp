@@ -37,7 +37,6 @@ void drawBullet(Bullet bullet[maxBullets])
 		
 		if (bullet[i].isActive)
 		{
-			std::cout << "homero chino";
 			DrawCircleV(bullet[i].pos, bullet[i].radius, BLUE);
 		}
 	}

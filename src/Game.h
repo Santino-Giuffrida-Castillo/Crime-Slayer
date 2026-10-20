@@ -11,3 +11,4 @@ void checkIfBulletOutScreen(Bullet bullet[maxBullets]);
 void checkIfBigAsteroidOutScreen(BigAsteroid asteroids[maxBullets]);
 void checkIfMidAsteroidOutScreen(MidAsteroid asteroids[2], int index);
 void checkIfLittleAsteroidOutScreen(LittleAsteroid asteroids[2], int index);
+void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], BigAsteroid asteroid[maxBullets]);

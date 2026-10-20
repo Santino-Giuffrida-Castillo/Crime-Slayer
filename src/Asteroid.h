@@ -10,6 +10,7 @@ struct LittleAsteroid
 	Vector2 vel;
 	float radius;
 	bool isActive = false;
+	bool isHit = false;
 
 };
 
@@ -21,6 +22,7 @@ struct MidAsteroid
 	Vector2 vel;
 	float radius;
 	bool isActive = false;
+	bool isHit = false;
 
 };
 
@@ -32,6 +34,7 @@ struct BigAsteroid
 	Vector2 vel;
 	float radius;
 	bool isActive = false;
+	bool isHit = false;
 	
 };
 
@@ -48,5 +51,4 @@ void drawAsteroid(MidAsteroid asteroids[2], int index);
 void drawAsteroid(LittleAsteroid asteroids[2], int index);
 
 void spawAsteroid(BigAsteroid asteroids[maxBullets], float& count);
-void spawMidAsteroid(MidAsteroid asteroids[2], int index);
-void spawLittleAsteroid(LittleAsteroid asteroids[2], int index);
+
