@@ -8,13 +8,20 @@ void initGame(Player& player, Bullet& bullet)
 
 }
 
-void playGame(Player& player)
+void playGame(Player& player, Bullet& bullet)
 {
 
 	movePlayer(player);
+	moveBullet(bullet);
 	checkIfPlayerOutScreen(player);
+	shoot(bullet, player);
+
+
 	BeginDrawing();
+
 	drawPlayer(player);
+	drawBullet(bullet);
+
 	EndDrawing();
 	
 

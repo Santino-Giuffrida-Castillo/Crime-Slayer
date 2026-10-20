@@ -38,7 +38,7 @@ void movePlayer(Player& player)
 		player.angle += 360;
 	}
 
-	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+	if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
 	{
 		if (Vector2Length(player.vel) > maxPlayerSpeed)
 		{
@@ -67,10 +67,14 @@ void drawPlayer(Player player)
 
 void shoot(Bullet& bullet, Player player)
 {
-	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+	Vector2 mousePos;
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
-		bullet.posX = player.pos.x;
-		bullet.posY = player.pos.y;
+		mousePos = GetMousePosition();
+		bullet.pos.x = player.pos.x;
+		bullet.pos.y = player.pos.y;
+		bullet.lookDir = Vector2Subtract(mousePos, bullet.pos);
+		bullet.lookDir = Vector2Normalize(bullet.lookDir);
 		bullet.isActive = true;
 	}
 }

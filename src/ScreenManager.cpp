@@ -25,7 +25,7 @@ void showScreen(Screen& actualScreen, bool& inGame)
 		else if (actualScreen == Screen::PLAY)
 		{
 			ClearBackground(BLACK);
-			playGame(player);
+			playGame(player, bullets[1]);
 		}
 		else if (actualScreen == Screen::HOW_PLAY)
 		{
