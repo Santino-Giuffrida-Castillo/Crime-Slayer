@@ -1,44 +1,47 @@
 #include "Bullet.h"
 #include <raymath.h>
 #include <iostream>
-Bullet initBullet()
+namespace asteroids
 {
-	Bullet bullet;
-	bullet.lookDir.x = 0;
-	bullet.lookDir.y = 0;
-	bullet.pos.x = 0;
-	bullet.pos.y = 0;
-	bullet.vel.x = 0;
-	bullet.vel.y = 0;
-	bullet.radius = 5;
-	bullet.isActive = false;
-	return bullet;
-}
-
-void moveBullet(Bullet bullet[maxBullets])
-{
-	for (int i = 0; i < maxBullets; i++)
+	Bullet initBullet()
 	{
-		if (bullet[i].isActive)
+		Bullet bullet;
+		bullet.lookDir.x = 0;
+		bullet.lookDir.y = 0;
+		bullet.pos.x = 0;
+		bullet.pos.y = 0;
+		bullet.vel.x = 0;
+		bullet.vel.y = 0;
+		bullet.radius = 5;
+		bullet.isActive = false;
+		return bullet;
+	}
+
+	void moveBullet(Bullet bullet[maxBullets])
+	{
+		for (int i = 0; i < maxBullets; i++)
 		{
-			bullet[i].pos.x += bullet[i].lookDir.x * bulletSpeed * GetFrameTime();
-			bullet[i].pos.y += bullet[i].lookDir.y * bulletSpeed * GetFrameTime();
+			if (bullet[i].isActive)
+			{
+				bullet[i].pos.x += bullet[i].lookDir.x * bulletSpeed * GetFrameTime();
+				bullet[i].pos.y += bullet[i].lookDir.y * bulletSpeed * GetFrameTime();
+			}
+
 		}
+
 
 	}
 
-
-}
-
-void drawBullet(Bullet bullet[maxBullets])
-{
-	for (int i = 0; i < maxBullets; i++)
+	void drawBullet(Bullet bullet[maxBullets])
 	{
-		
-		if (bullet[i].isActive)
+		for (int i = 0; i < maxBullets; i++)
 		{
-			DrawCircleV(bullet[i].pos, bullet[i].radius, BLUE);
-		}
-	}
 
+			if (bullet[i].isActive)
+			{
+				DrawCircleV(bullet[i].pos, bullet[i].radius, BLUE);
+			}
+		}
+
+	}
 }

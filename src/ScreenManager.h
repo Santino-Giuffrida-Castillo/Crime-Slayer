@@ -1,3 +1,6 @@
 #pragma once
 #include "Screen.h"
-void showScreen(Screen& actualScreen, bool& inGame);
+namespace asteroids
+{
+	void showScreen(Screen& actualScreen, bool& inGame);
+}

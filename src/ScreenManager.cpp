@@ -9,59 +9,62 @@
 #include "LoseScreen.h"
 #include "PauseMenu.h"
 
-void showScreen(Screen& actualScreen, bool& inGame)
+namespace asteroids
 {
-	InitWindow(screenWidth, screenHigh, "Crime-Slayer");
-	Player player;
-	Bullet bullets[maxBullets];
-	BigAsteroid asteroids[maxBullets];
-	float count = 0;
-
-	initGame(player, bullets, asteroids);
-
-	while (!WindowShouldClose() && inGame)
+	void showScreen(Screen& actualScreen, bool& inGame)
 	{
+		InitWindow(screenWidth, screenHigh, "Crime-Slayer");
+		Player player;
+		Bullet bullets[maxBullets];
+		BigAsteroid asteroids[maxBullets];
+		float count = 0;
 
-		if (actualScreen == Screen::MAIN_MENU)
+		initGame(player, bullets, asteroids);
+
+		while (!WindowShouldClose() && inGame)
 		{
-			ClearBackground(BLACK);
-			if (player.lives <= 0)
+
+			if (actualScreen == Screen::MAIN_MENU)
 			{
-				initGame(player, bullets, asteroids);
+				ClearBackground(BLACK);
+				if (player.lives <= 0)
+				{
+					initGame(player, bullets, asteroids);
+				}
+
+				showMainMenu(actualScreen);
 			}
-			
-			showMainMenu(actualScreen);
+			else if (actualScreen == Screen::PLAY)
+			{
+				playGame(player, bullets, asteroids, count, actualScreen);
+				count += GetFrameTime();
+			}
+			else if (actualScreen == Screen::HOW_PLAY)
+			{
+				ClearBackground(BLACK);
+				showHowPlay(actualScreen);
+			}
+			else if (actualScreen == Screen::CREDITS)
+			{
+				ClearBackground(BLACK);
+				showCredits(actualScreen);
+			}
+			else if (actualScreen == Screen::EXIT)
+			{
+				inGame = false;
+			}
+			else if (actualScreen == Screen::LOOSE)
+			{
+				ClearBackground(BLACK);
+				showLoseScreen(actualScreen, player);
+
+			}
+			else if (actualScreen == Screen::PAUSE)
+			{
+				ClearBackground(BLACK);
+				showPauseMenu(actualScreen, player);
+			}
 		}
-		else if (actualScreen == Screen::PLAY)
-		{
-			playGame(player, bullets, asteroids, count, actualScreen);
-			count += GetFrameTime();
-		}
-		else if (actualScreen == Screen::HOW_PLAY)
-		{
-			ClearBackground(BLACK);
-			showHowPlay(actualScreen);
-		}
-		else if (actualScreen == Screen::CREDITS)
-		{
-			ClearBackground(BLACK);
-			showCredits(actualScreen);
-		}
-		else if (actualScreen == Screen::EXIT)
-		{
-			inGame = false;
-		}
-		else if (actualScreen == Screen::LOOSE)
-		{
-			ClearBackground(BLACK);
-			showLoseScreen(actualScreen, player);
-			
-		}
-		else if (actualScreen == Screen::PAUSE)
-		{
-			ClearBackground(BLACK);
-			showPauseMenu(actualScreen, player);
-		}
+		CloseWindow();
 	}
-	CloseWindow();
 }

@@ -1,20 +1,23 @@
 #include "Button.h"
 #include <raylib.h>
-bool onClick(Button button)
+namespace asteroids
 {
-	int mouseX = 0;
-	int mouseY = 0;
-	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+	bool onClick(Button button)
 	{
-		mouseX = GetMouseX();
-		mouseY = GetMouseY();
-		if (mouseX >= (button.x) && mouseX <= (button.x + button.width))
+		int mouseX = 0;
+		int mouseY = 0;
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 		{
-			if (mouseY >= (button.y) && mouseY <= (button.y + button.high))
+			mouseX = GetMouseX();
+			mouseY = GetMouseY();
+			if (mouseX >= (button.x) && mouseX <= (button.x + button.width))
 			{
-				return true;
+				if (mouseY >= (button.y) && mouseY <= (button.y + button.high))
+				{
+					return true;
+				}
 			}
 		}
+		return false;
 	}
-	return false;
 }

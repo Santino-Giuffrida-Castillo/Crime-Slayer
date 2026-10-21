@@ -1,3 +1,6 @@
 #pragma once
 #include "Screen.h"
-void showMainMenu(Screen& actualScreen);
+namespace asteroids
+{
+	void showMainMenu(Screen& actualScreen);
+}

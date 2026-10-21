@@ -2,7 +2,7 @@
 #include "ScreenManager.h"
 #include <iostream>
 #include <time.h>
-
+using namespace asteroids;
 int main()
 {
 	srand(static_cast<unsigned int>(time(0)));
