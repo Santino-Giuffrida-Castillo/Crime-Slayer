@@ -28,6 +28,7 @@
     <ClCompile Include="..\src\LoseScreen.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MainMenu.cpp" />
+    <ClCompile Include="..\src\PauseMenu.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
     <ClCompile Include="..\src\ScreenManager.cpp" />
   </ItemGroup>
@@ -41,6 +42,7 @@
     <ClInclude Include="..\src\HowPlay.h" />
     <ClInclude Include="..\src\LoseScreen.h" />
     <ClInclude Include="..\src\MainMenu.h" />
+    <ClInclude Include="..\src\PauseMenu.h" />
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\Screen.h" />
     <ClInclude Include="..\src\ScreenManager.h" />

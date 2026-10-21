@@ -7,6 +7,7 @@
 #include "Const.h"
 #include "Asteroid.h"
 #include "LoseScreen.h"
+#include "PauseMenu.h"
 
 void showScreen(Screen& actualScreen, bool& inGame)
 {
@@ -55,6 +56,11 @@ void showScreen(Screen& actualScreen, bool& inGame)
 			ClearBackground(BLACK);
 			showLoseScreen(actualScreen, player);
 			
+		}
+		else if (actualScreen == Screen::PAUSE)
+		{
+			ClearBackground(BLACK);
+			showPauseMenu(actualScreen, player);
 		}
 	}
 	CloseWindow();
