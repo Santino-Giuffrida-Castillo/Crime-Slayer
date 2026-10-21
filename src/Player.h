@@ -1,6 +1,5 @@
 #pragma once
 #include "Bullet.h"
-#include "Const.h"
 #include <raylib.h>
 namespace asteroids
 {

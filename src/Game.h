@@ -1,7 +1,6 @@
 #pragma once
 #include "Player.h"
 #include "Bullet.h"
-#include "Const.h"
 #include "Asteroid.h"
 #include "Screen.h"
 namespace asteroids

@@ -1,6 +1,5 @@
 #pragma once
 #include <raylib.h>
-#include "Const.h"
 namespace asteroids
 {
 	const int bulletSpeed = 300;
