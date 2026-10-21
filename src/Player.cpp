@@ -11,6 +11,7 @@ Player initPlayer()
 	player.radius = 30;
 	player.angle = 0;
 	player.lives = 3;
+	player.points = 0;
 	return player;
 }
 
@@ -86,4 +87,9 @@ void shoot(Bullet bullet[maxBullets], Player player)
 		}
 	
 	}
+}
+void showPlayerInfo(Player player)
+{
+	DrawText(TextFormat("Puntos: %i", player.points), 10, 10, 30, WHITE);
+	DrawText(TextFormat("Vidas: %i", player.lives), 170, 10, 30, WHITE);
 }

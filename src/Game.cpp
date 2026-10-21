@@ -51,6 +51,7 @@ void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[m
 	drawPlayer(player);
 	drawBullet(bullet);
 	drawAsteroid(asteroids);
+	showPlayerInfo(player);
 
 	EndDrawing();
 
@@ -248,6 +249,7 @@ void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], B
 						asteroid[i].midAsteroids[k].isHit = false;
 					}
 					bullets[j].isActive = false;
+					player.points += 10;
 				}
 			}
 		}
@@ -275,6 +277,7 @@ void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], B
 								asteroid[i].midAsteroids[k].littleAsteroids[l].isHit = false;
 							}
 							bullets[j].isActive = false;
+							player.points += 20;
 						}
 					}
 				}
@@ -303,6 +306,7 @@ void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], B
 								if (bullets[j].isActive && distance <= bullets[j].radius + asteroid[i].midAsteroids[k].littleAsteroids[l].radius && !asteroid[i].midAsteroids[k].littleAsteroids[l].isHit)
 								{
 									asteroid[i].midAsteroids[k].littleAsteroids[l].isHit = true;
+									player.points += 30;
 									bullets[j].isActive = false;
 								}
 							}
@@ -315,6 +319,5 @@ void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], B
 	
 
 }
-
 
 

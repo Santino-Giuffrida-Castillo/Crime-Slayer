@@ -10,8 +10,10 @@ struct Player
 	float angle;
 	float radius;
 	int lives;
+	int points;
 };
 Player initPlayer();
 void movePlayer(Player& player);
 void drawPlayer(Player player);
 void shoot(Bullet bullet[maxBullets], Player player);
+void showPlayerInfo(Player player);
