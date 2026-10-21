@@ -133,7 +133,11 @@ void checkIfBigAsteroidOutScreen(BigAsteroid asteroids[maxBullets])
 		for (int j = 0; j < 2; j++)
 		{
 			checkIfMidAsteroidOutScreen(asteroids[i].midAsteroids, j);
-			checkIfLittleAsteroidOutScreen(asteroids[i].midAsteroids[j].littleAsteroids, j);
+			for (int k = 0; k < 2; k++)
+			{
+				checkIfLittleAsteroidOutScreen(asteroids[i].midAsteroids[j].littleAsteroids, k);
+			}
+			
 		}
 	}
 }

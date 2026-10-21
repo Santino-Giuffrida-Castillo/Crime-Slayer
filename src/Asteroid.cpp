@@ -47,11 +47,12 @@ MidAsteroid initMidAsteroid(BigAsteroid& asteroid, int index)
 }
 LittleAsteroid initLittleAsteroid(MidAsteroid& asteroid, int index)
 {
-	asteroid.littleAsteroids[index].lookDir.x = asteroid.lookDir.x;
+	
 	asteroid.littleAsteroids[index].lookDir.y = asteroid.lookDir.y;
 
 	if (index % 2 == 0)
 	{
+		asteroid.littleAsteroids[index].lookDir.x = -asteroid.lookDir.x;
 		asteroid.littleAsteroids[index].pos.x = asteroid.pos.x;
 		asteroid.littleAsteroids[index].pos.y = asteroid.pos.y;
 		asteroid.littleAsteroids[index].vel.x = -asteroid.vel.x;
@@ -59,6 +60,7 @@ LittleAsteroid initLittleAsteroid(MidAsteroid& asteroid, int index)
 	}
 	else
 	{
+		asteroid.littleAsteroids[index].lookDir.x = asteroid.lookDir.x;
 		asteroid.littleAsteroids[index].pos.x = asteroid.pos.x + asteroid.littleAsteroids[index].radius;
 		asteroid.littleAsteroids[index].pos.y = asteroid.pos.y + asteroid.littleAsteroids[index].radius;
 		asteroid.littleAsteroids[index].vel.x = asteroid.vel.x;
@@ -85,7 +87,11 @@ void moveAsteroid(BigAsteroid asteroids[maxBullets])
 				if (asteroids[i].midAsteroids[j].isActive)
 				{
 					moveAsteroid(asteroids[i].midAsteroids, j);
-					moveAsteroid(asteroids[i].midAsteroids[j].littleAsteroids, j);
+					for (int k = 0; k < 2; k++)
+					{
+						moveAsteroid(asteroids[i].midAsteroids[j].littleAsteroids, k);
+					}
+					
 				}
 			}
 		}
@@ -133,10 +139,15 @@ void drawAsteroid(BigAsteroid asteroids[maxBullets])
 					drawAsteroid(asteroids[i].midAsteroids, j);
 
 				}
-				if (asteroids[i].midAsteroids[j].littleAsteroids[j].isActive)
+				
+				for (int k = 0; k < 2; k++)
 				{
-					drawAsteroid(asteroids[i].midAsteroids[j].littleAsteroids, j);
+					if (asteroids[i].midAsteroids[j].littleAsteroids[j].isActive)
+					{
+						drawAsteroid(asteroids[i].midAsteroids[j].littleAsteroids, k);
+					}
 				}
+
 
 			}
 		}

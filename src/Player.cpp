@@ -91,5 +91,5 @@ void shoot(Bullet bullet[maxBullets], Player player)
 void showPlayerInfo(Player player)
 {
 	DrawText(TextFormat("Puntos: %i", player.points), 10, 10, 30, WHITE);
-	DrawText(TextFormat("Vidas: %i", player.lives), 170, 10, 30, WHITE);
+	DrawText(TextFormat("Vidas: %i", player.lives), 200, 10, 30, WHITE);
 }
