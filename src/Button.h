@@ -2,6 +2,8 @@
 #include <iostream>
 namespace asteroids
 {
+	const int fontButtons = 20;
+	const int buttonsOffset = 20;
 	struct Button
 	{
 		int x;

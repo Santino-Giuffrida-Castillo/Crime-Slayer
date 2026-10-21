@@ -3,7 +3,8 @@
 #include <raylib.h>
 namespace asteroids
 {
-
+	const int ASTEROID_SPEED = 300;
+	const int MAX_ASTEROIDS = 30;
 	struct LittleAsteroid
 	{
 		Vector2 lookDir;
@@ -43,14 +44,14 @@ namespace asteroids
 	MidAsteroid initMidAsteroid(BigAsteroid& asteroid, int index);
 	LittleAsteroid initLittleAsteroid(MidAsteroid& asteroid, int index);
 
-	void moveAsteroid(BigAsteroid asteroids[maxBullets]);
+	void moveAsteroid(BigAsteroid asteroids[MAX_ASTEROIDS]);
 	void moveAsteroid(MidAsteroid asteroids[2], int index);
 	void moveAsteroid(LittleAsteroid asteroids[2], int index);
 
-	void drawAsteroid(BigAsteroid asteroids[maxBullets]);
+	void drawAsteroid(BigAsteroid asteroids[MAX_ASTEROIDS]);
 	void drawAsteroid(MidAsteroid asteroids[2], int index);
 	void drawAsteroid(LittleAsteroid asteroids[2], int index);
 
-	void spawAsteroid(BigAsteroid asteroids[maxBullets], float& count);
+	void spawAsteroid(BigAsteroid asteroids[MAX_ASTEROIDS], float& count);
 
 }

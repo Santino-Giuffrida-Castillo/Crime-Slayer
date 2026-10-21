@@ -4,19 +4,19 @@
 #include "HowPlay.h"
 #include "Credits.h"
 #include "Game.h"
-#include "Const.h"
 #include "Asteroid.h"
 #include "LoseScreen.h"
 #include "PauseMenu.h"
 
 namespace asteroids
 {
+
 	void showScreen(Screen& actualScreen, bool& inGame)
 	{
 		InitWindow(screenWidth, screenHigh, "Crime-Slayer");
 		Player player;
 		Bullet bullets[maxBullets];
-		BigAsteroid asteroids[maxBullets];
+		BigAsteroid asteroids[MAX_ASTEROIDS];
 		float count = 0;
 
 		initGame(player, bullets, asteroids);

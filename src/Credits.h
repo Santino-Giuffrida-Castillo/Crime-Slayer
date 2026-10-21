@@ -1,6 +1,6 @@
 #pragma once
+#include "Screen.h"
 namespace asteroids
 {
-#include "Screen.h"
 	void showCredits(Screen& actualScreen);
 }

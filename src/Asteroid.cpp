@@ -76,15 +76,15 @@ namespace asteroids
 		return asteroid.littleAsteroids[index];
 	}
 
-	void moveAsteroid(BigAsteroid asteroids[maxBullets])
+	void moveAsteroid(BigAsteroid asteroids[MAX_ASTEROIDS])
 	{
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 			if (asteroids[i].isActive)
 			{
 				asteroids[i].lookDir = Vector2Normalize(asteroids[i].lookDir);
-				asteroids[i].pos.x += asteroids[i].lookDir.x * bulletSpeed * GetFrameTime();
-				asteroids[i].pos.y += asteroids[i].lookDir.y * bulletSpeed * GetFrameTime();
+				asteroids[i].pos.x += asteroids[i].lookDir.x * ASTEROID_SPEED * GetFrameTime();
+				asteroids[i].pos.y += asteroids[i].lookDir.y * ASTEROID_SPEED * GetFrameTime();
 				for (int j = 0; j < 2; j++)
 				{
 					if (asteroids[i].midAsteroids[j].isActive)
@@ -108,8 +108,8 @@ namespace asteroids
 		if (asteroids[index].isActive)
 		{
 			asteroids[index].lookDir = Vector2Normalize(asteroids[index].lookDir);
-			asteroids[index].pos.x += asteroids[index].lookDir.x * bulletSpeed * GetFrameTime();
-			asteroids[index].pos.y += asteroids[index].lookDir.y * bulletSpeed * GetFrameTime();
+			asteroids[index].pos.x += asteroids[index].lookDir.x * ASTEROID_SPEED * GetFrameTime();
+			asteroids[index].pos.y += asteroids[index].lookDir.y * ASTEROID_SPEED * GetFrameTime();
 		}
 	}
 
@@ -118,14 +118,14 @@ namespace asteroids
 		if (asteroids[index].isActive)
 		{
 			asteroids[index].lookDir = Vector2Normalize(asteroids[index].lookDir);
-			asteroids[index].pos.x += asteroids[index].lookDir.x * bulletSpeed * GetFrameTime();
-			asteroids[index].pos.y += asteroids[index].lookDir.y * bulletSpeed * GetFrameTime();
+			asteroids[index].pos.x += asteroids[index].lookDir.x * ASTEROID_SPEED * GetFrameTime();
+			asteroids[index].pos.y += asteroids[index].lookDir.y * ASTEROID_SPEED * GetFrameTime();
 		}
 	}
 
-	void drawAsteroid(BigAsteroid asteroids[maxBullets])
+	void drawAsteroid(BigAsteroid asteroids[MAX_ASTEROIDS])
 	{
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 
 			if (asteroids[i].isActive)
@@ -174,13 +174,13 @@ namespace asteroids
 	}
 
 
-	void spawAsteroid(BigAsteroid asteroids[maxBullets], float& count)
+	void spawAsteroid(BigAsteroid asteroids[MAX_ASTEROIDS], float& count)
 	{
 		int countMax = 10;
 		int asteroidsInTotal = 0;
 		if (count >= countMax)
 		{
-			for (int i = 0; i < maxBullets; i++)
+			for (int i = 0; i < MAX_ASTEROIDS; i++)
 			{
 				if (!asteroids[i].isActive)
 				{

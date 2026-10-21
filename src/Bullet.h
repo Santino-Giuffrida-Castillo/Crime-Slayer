@@ -3,6 +3,8 @@
 #include "Const.h"
 namespace asteroids
 {
+	const int bulletSpeed = 300;
+	const int maxBullets = 30;
 	struct Bullet
 	{
 		Vector2 lookDir;

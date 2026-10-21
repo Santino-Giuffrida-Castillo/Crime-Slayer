@@ -1,6 +1,7 @@
 #include "Bullet.h"
 #include <raymath.h>
-#include <iostream>
+
+
 namespace asteroids
 {
 	Bullet initBullet()

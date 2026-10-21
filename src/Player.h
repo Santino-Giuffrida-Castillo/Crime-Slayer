@@ -4,6 +4,7 @@
 #include <raylib.h>
 namespace asteroids
 {
+	const float maxPlayerSpeed = 300;
 	struct Player
 	{
 		Vector2 lookDir;

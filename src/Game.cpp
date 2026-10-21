@@ -4,14 +4,14 @@
 #include <iostream>
 namespace asteroids
 {
-	void initGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets])
+	void initGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[MAX_ASTEROIDS])
 	{
 		player = initPlayer();
 		for (int i = 0; i < maxBullets; i++)
 		{
 			bullet[i] = initBullet();
 		}
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 			asteroids[i] = initAsteroid();
 			for (int j = 0; j < 2; j++)
@@ -82,9 +82,9 @@ namespace asteroids
 
 	}
 
-	void checkIfBulletOutScreen(Bullet bullet[maxBullets])
+	void checkIfBulletOutScreen(Bullet bullet[MAX_ASTEROIDS])
 	{
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 			if ((bullet[i].pos.x - bullet[i].radius) > screenWidth)
 			{
@@ -107,9 +107,9 @@ namespace asteroids
 
 	}
 
-	void checkIfBigAsteroidOutScreen(BigAsteroid asteroids[maxBullets])
+	void checkIfBigAsteroidOutScreen(BigAsteroid asteroids[MAX_ASTEROIDS])
 	{
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 			if (!asteroids[i].isActive)
 			{
@@ -239,7 +239,7 @@ namespace asteroids
 		}
 		//ahora bala con asteroide grande
 
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 			if (asteroid[i].isActive && !asteroid[i].isHit)
 			{
@@ -261,7 +261,7 @@ namespace asteroids
 			}
 		}
 		//chequeo medianos
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 			if (asteroid[i].isActive && asteroid[i].isHit)
 			{
@@ -292,7 +292,7 @@ namespace asteroids
 
 		}
 		//chequeo chiquitos
-		for (int i = 0; i < maxBullets; i++)
+		for (int i = 0; i < MAX_ASTEROIDS; i++)
 		{
 
 			if (asteroid[i].isActive && asteroid[i].isHit)
