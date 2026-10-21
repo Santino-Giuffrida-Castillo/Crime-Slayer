@@ -16,8 +16,15 @@ void showLoseScreen(Screen& actualScreen, Player& player)
 	{
 		actualScreen = Screen::MAIN_MENU;
 	}
-
+	if (player.points > player.highScore)
+	{
+	DrawText(TextFormat("NEW HIGHSCORE: %i", player.highScore), screenWidth / 2 - MeasureText("PERDISTE", 50) / 2, screenHigh / 3 + 20, 50, WHITE);
+	}
+	else
+	{
 	DrawText(TextFormat("HIGHSCORE: %i", player.highScore), screenWidth / 2 - MeasureText("PERDISTE", 50) / 2, screenHigh / 3 + 20, 50, WHITE);
+	}
+	
 
 	BeginDrawing();
 
