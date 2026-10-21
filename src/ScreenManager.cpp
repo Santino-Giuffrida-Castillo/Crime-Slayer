@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "Const.h"
 #include "Asteroid.h"
+#include "LoseScreen.h"
 
 void showScreen(Screen& actualScreen, bool& inGame)
 {
@@ -23,11 +24,16 @@ void showScreen(Screen& actualScreen, bool& inGame)
 		if (actualScreen == Screen::MAIN_MENU)
 		{
 			ClearBackground(BLACK);
+			if (player.lives <= 0)
+			{
+				initGame(player, bullets, asteroids);
+			}
+			
 			showMainMenu(actualScreen);
 		}
 		else if (actualScreen == Screen::PLAY)
 		{
-			playGame(player, bullets, asteroids, count);
+			playGame(player, bullets, asteroids, count, actualScreen);
 			count += GetFrameTime();
 		}
 		else if (actualScreen == Screen::HOW_PLAY)
@@ -43,6 +49,12 @@ void showScreen(Screen& actualScreen, bool& inGame)
 		else if (actualScreen == Screen::EXIT)
 		{
 			inGame = false;
+		}
+		else if (actualScreen == Screen::LOOSE)
+		{
+			ClearBackground(BLACK);
+			showLoseScreen(actualScreen, player);
+			
 		}
 	}
 	CloseWindow();

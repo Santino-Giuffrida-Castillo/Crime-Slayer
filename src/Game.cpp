@@ -27,7 +27,7 @@ void initGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[m
 
 }
 
-void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets], float& count)
+void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets], float& count, Screen& actualScreen)
 {
 
 	movePlayer(player);
@@ -40,9 +40,9 @@ void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[m
 	checkIfBigAsteroidOutScreen(asteroids);
 	checkOneBigAsteroidCollisions(player, bullet, asteroids);
 
-
 	shoot(bullet, player);
 	spawAsteroid(asteroids, count);
+	checkIfPlayerIsLosing(player, actualScreen);
 
 	BeginDrawing();
 	ClearBackground(BLACK);
@@ -318,6 +318,16 @@ void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], B
 		}
 	
 
+}
+
+void checkIfPlayerIsLosing(Player& player, Screen& actualScreen)
+{
+	if (player.lives <= 0)
+	{
+		player.lives = 0;
+		actualScreen = Screen::LOOSE;
+		player.highScore = player.points;
+	}
 }
 
 

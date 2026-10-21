@@ -25,6 +25,7 @@
     <ClCompile Include="..\src\Credits.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\HowPlay.cpp" />
+    <ClCompile Include="..\src\LoseScreen.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MainMenu.cpp" />
     <ClCompile Include="..\src\Player.cpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="..\src\Credits.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\HowPlay.h" />
+    <ClInclude Include="..\src\LoseScreen.h" />
     <ClInclude Include="..\src\MainMenu.h" />
     <ClInclude Include="..\src\Player.h" />
     <ClInclude Include="..\src\Screen.h" />

@@ -6,5 +6,6 @@ enum class Screen
 	PLAY,
 	HOW_PLAY,
 	CREDITS,
+	LOOSE,
 	EXIT
 };

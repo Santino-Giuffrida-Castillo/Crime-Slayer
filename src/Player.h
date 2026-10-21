@@ -11,6 +11,7 @@ struct Player
 	float radius;
 	int lives;
 	int points;
+	int highScore = 0;
 };
 Player initPlayer();
 void movePlayer(Player& player);
