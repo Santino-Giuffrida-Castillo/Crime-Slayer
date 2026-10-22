@@ -1,6 +1,7 @@
 #include "Credits.h"
 
-#include <raylib.h
+#include <raylib.h>
+
 #include "Button.h"
 namespace asteroids
 {

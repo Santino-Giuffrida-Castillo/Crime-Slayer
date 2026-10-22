@@ -1,5 +1,7 @@
 #include "Asteroid.h"
+
 #include <iostream>
+
 #include <raymath.h>
 
 namespace asteroids
