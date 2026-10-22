@@ -29,11 +29,7 @@ namespace asteroids
 			if (actualScreen == Screen::MAIN_MENU)
 			{
 				ClearBackground(BLACK);
-				if (player.lives <= 0)
-				{
-					initGame(player, bullets, asteroids);
-				}
-
+				initGame(player, bullets, asteroids);
 				showMainMenu(actualScreen);
 			}
 			else if (actualScreen == Screen::PLAY)
@@ -64,7 +60,7 @@ namespace asteroids
 			else if (actualScreen == Screen::PAUSE)
 			{
 				ClearBackground(BLACK);
-				showPauseMenu(actualScreen, player);
+				showPauseMenu(actualScreen);
 			}
 		}
 		CloseWindow();
