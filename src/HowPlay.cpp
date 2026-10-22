@@ -20,11 +20,9 @@ namespace asteroids
 			actualScreen = Screen::MAIN_MENU;
 		}
 
-		BeginDrawing();
 
 		DrawRectangle(exitButton.x, exitButton.y, exitButton.width, exitButton.high, RED);
 		DrawText(exitButton.text.c_str(), exitButton.x + (exitButton.width - MeasureText(exitButton.text.c_str(), fontButtons)) / 2, exitButton.y + (exitButton.high - fontButtons) / 2, fontButtons, RAYWHITE);
 
-		EndDrawing();
 	}
 }

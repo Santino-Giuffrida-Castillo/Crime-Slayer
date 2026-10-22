@@ -51,7 +51,7 @@ namespace asteroids
 		checkIfPlayerPaused(actualScreen);
 
 
-		BeginDrawing();
+
 		ClearBackground(BLACK);
 
 
@@ -60,7 +60,7 @@ namespace asteroids
 		drawAsteroid(asteroids);
 		showPlayerInfo(player);
 
-		EndDrawing();
+
 
 
 	}

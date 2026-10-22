@@ -36,7 +36,7 @@ namespace asteroids
 
 
 
-		BeginDrawing();
+
 
 		DrawRectangle(exitButton.x, exitButton.y, exitButton.width, exitButton.high, RED);
 		DrawText(exitButton.text.c_str(), exitButton.x + (exitButton.width - MeasureText(exitButton.text.c_str(), fontButtons)) / 2, exitButton.y + (exitButton.high - fontButtons) / 2, fontButtons, RAYWHITE);
@@ -44,6 +44,6 @@ namespace asteroids
 		DrawRectangle(continueButton.x, continueButton.y, continueButton.width, continueButton.high, RED);
 		DrawText(continueButton.text.c_str(), continueButton.x + (continueButton.width - MeasureText(continueButton.text.c_str(), fontButtons)) / 2, continueButton.y + (continueButton.high - fontButtons) / 2, fontButtons, RAYWHITE);
 
-		EndDrawing();
+
 	}
 }

@@ -25,7 +25,7 @@ namespace asteroids
 
 		while (!WindowShouldClose() && inGame)
 		{
-
+			BeginDrawing();
 			if (actualScreen == Screen::MAIN_MENU)
 			{
 				ClearBackground(BLACK);
@@ -62,7 +62,9 @@ namespace asteroids
 				ClearBackground(BLACK);
 				showPauseMenu(actualScreen);
 			}
+			EndDrawing();
 		}
+		
 		CloseWindow();
 	}
 }
