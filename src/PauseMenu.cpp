@@ -1,7 +1,9 @@
 #include "PauseMenu.h"
+
+#include <raylib.h>
+
 #include "Button.h"
 #include "Screen.h"
-#include <raylib.h>
 
 namespace asteroids
 {
@@ -17,7 +19,7 @@ namespace asteroids
 
 		if (onClick(exitButton))
 		{
-			actualScreen = Screen::MAIN_MENU;
+			actualScreen = Screen::PLAY;
 		}
 		if (player.points > player.highScore)
 		{

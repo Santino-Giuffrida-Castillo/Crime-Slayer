@@ -1,7 +1,10 @@
 #include "Game.h"
-#include "Screen.h"
-#include <raymath.h>
+
 #include <iostream>
+
+#include <raymath.h>
+
+#include "Screen.h"
 namespace asteroids
 {
 	void initGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[MAX_ASTEROIDS])
@@ -45,6 +48,8 @@ namespace asteroids
 		shoot(bullet, player);
 		spawAsteroid(asteroids, count);
 		checkIfPlayerIsLosing(player, actualScreen);
+		checkIfPlayerPaused(actualScreen);
+
 
 		BeginDrawing();
 		ClearBackground(BLACK);
@@ -336,4 +341,12 @@ namespace asteroids
 		}
 	}
 
+
+	void checkIfPlayerPaused(Screen& actualScreen)
+	{
+		if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
+		{
+			actualScreen = Screen::PAUSE;
+		}
+	}
 }

@@ -1,6 +1,9 @@
 #include "MainMenu.h"
-#include <raylib.h>
+
 #include <iostream>
+
+#include <raylib.h>
+
 #include "Button.h"
 
 

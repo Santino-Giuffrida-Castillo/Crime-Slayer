@@ -1,5 +1,7 @@
 #include "ScreenManager.h"
+
 #include <raylib.h>
+
 #include "MainMenu.h"
 #include "HowPlay.h"
 #include "Credits.h"

@@ -1,6 +1,8 @@
 #include "LoseScreen.h"
-#include "Button.h"
+
 #include <raylib.h>
+
+#include "Button.h"
 namespace asteroids
 {
 	void showLoseScreen(Screen& actualScreen, Player& player)

@@ -1,6 +1,8 @@
 #include <Player.h>
+
 #include <raymath.h>
-#include <Screen.h>
+
+#include "Screen.h"
 namespace asteroids
 {
 	Player initPlayer()

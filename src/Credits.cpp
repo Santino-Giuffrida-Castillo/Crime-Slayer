@@ -1,6 +1,7 @@
 #include "Credits.h"
+
+#include <raylib.h
 #include "Button.h"
-#include <raylib.h>
 namespace asteroids
 {
 	void showCredits(Screen& actualScreen)

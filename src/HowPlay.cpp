@@ -1,6 +1,8 @@
 #include "HowPlay.h"
-#include "Button.h"
+
 #include <raylib.h>
+
+#include "Button.h"
 namespace asteroids
 {
 	void showHowPlay(Screen& actualScreen)

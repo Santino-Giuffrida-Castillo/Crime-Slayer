@@ -14,4 +14,5 @@ namespace asteroids
 	void checkIfLittleAsteroidOutScreen(LittleAsteroid asteroids[2], int index);
 	void checkOneBigAsteroidCollisions(Player& player, Bullet bullets[maxBullets], BigAsteroid asteroid[maxBullets]);
 	void checkIfPlayerIsLosing(Player& player, Screen& actualScreen);
+	void checkIfPlayerPaused(Screen& actualScreen);
 }
