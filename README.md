@@ -51,4 +51,4 @@ ChatGPT fue utilizado como herramienta de apoyo para la corrección de errores y
 
 El código fuente del proyecto está disponible en GitHub:
 
-[**Ver Crime-Slayer en GitHub**](https://github.com/Santino-Giuffrida-Castillo/Crime-Slayer)
+
