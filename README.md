@@ -47,8 +47,5 @@ Recursos gráficos creados con asistencia de inteligencia artificial y efectos d
 
 ChatGPT fue utilizado como herramienta de apoyo para la corrección de errores y la creación de recursos gráficos.
 
-## Repositorio
-
-El código fuente del proyecto está disponible en GitHub:
 
 
