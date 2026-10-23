@@ -4,5 +4,5 @@
 #include "Player.h"
 namespace asteroids
 {
-	void showPauseMenu(Screen& actualScreen);
+	void showPauseMenu(Screen& actualScreen, Font font);
 }

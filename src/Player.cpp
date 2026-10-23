@@ -5,6 +5,10 @@
 #include "Screen.h"
 namespace asteroids
 {
+	static Texture2D playerTexture;
+	static Sound shootSound;
+	static Sound deadSound;
+
 	Player initPlayer()
 	{
 		Player player;
@@ -16,6 +20,9 @@ namespace asteroids
 		player.angle = 0;
 		player.lives = 3;
 		player.points = 0;
+		player.texture = playerTexture;
+		player.shootSound = shootSound;
+		player.deadSound = deadSound;
 		return player;
 	}
 
@@ -67,7 +74,18 @@ namespace asteroids
 
 	void drawPlayer(Player player)
 	{
+#ifdef _DEBUG
 		DrawCircleV(player.pos, player.radius, RED);
+#endif 
+
+
+		Rectangle source = {0,0,static_cast<float>(player.texture.width),static_cast<float>(player.texture.height)};
+
+		Rectangle dest = {player.pos.x,player.pos.y,player.radius * 2,player.radius * 2};
+
+		Vector2 origin = {player.radius,	player.radius};
+
+		DrawTexturePro(player.texture,source,dest,origin,player.angle,	WHITE);
 	}
 
 	void shoot(Bullet bullet[maxBullets], Player player)
@@ -75,6 +93,7 @@ namespace asteroids
 		Vector2 mousePos;
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 		{
+			PlaySound(player.shootSound);
 			mousePos = GetMousePosition();
 			for (int i = 0; i < maxBullets; i++)
 			{
@@ -85,6 +104,7 @@ namespace asteroids
 					bullet[i].lookDir = Vector2Subtract(mousePos, bullet[i].pos);
 					bullet[i].lookDir = Vector2Normalize(bullet[i].lookDir);
 					bullet[i].isActive = true;
+
 					break;
 				}
 
@@ -96,5 +116,21 @@ namespace asteroids
 	{
 		DrawText(TextFormat("Puntos: %i", player.points), 10, 10, 30, WHITE);
 		DrawText(TextFormat("Vidas: %i", player.lives), 200, 10, 30, WHITE);
+	}
+
+
+
+	void loadPlayerAssets()
+	{
+		playerTexture = LoadTexture("res/player.png");
+		shootSound = LoadSound("res/shoot.wav");
+		deadSound = LoadSound("res/death.wav");
+	}
+
+	void unloadPlayerAssets()
+	{
+		UnloadTexture(playerTexture);
+		UnloadSound(shootSound);
+		UnloadSound(deadSound);
 	}
 }

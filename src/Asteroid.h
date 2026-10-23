@@ -13,7 +13,11 @@ namespace asteroids
 		float radius;
 		bool isActive = false;
 		bool isHit = false;
-
+		Sound explosionSound;
+		Texture2D texture = { 0 };
+		Rectangle source;
+		Rectangle dest;
+		Vector2 origin;
 	};
 
 	struct MidAsteroid
@@ -25,7 +29,11 @@ namespace asteroids
 		float radius;
 		bool isActive = false;
 		bool isHit = false;
-
+		Texture2D texture = { 0 };
+		Sound explosionSound;
+		Rectangle source;
+		Rectangle dest;
+		Vector2 origin;
 	};
 
 	struct BigAsteroid
@@ -37,7 +45,11 @@ namespace asteroids
 		float radius;
 		bool isActive = false;
 		bool isHit = false;
-
+		Texture2D texture = { 0 };
+		Sound explosionSound;
+		Rectangle source;
+		Rectangle dest;
+		Vector2 origin;
 	};
 
 	BigAsteroid initAsteroid();
@@ -54,4 +66,10 @@ namespace asteroids
 
 	void spawAsteroid(BigAsteroid asteroids[MAX_ASTEROIDS], float& count);
 
+	void loadAsteroidTextures();
+	void unloadAsteroidTextures();
+
+	void loadAsteroidSounds();
+	void unloadAsteroidSounds();
+	void playAsteroidExplosion(int num);
 }

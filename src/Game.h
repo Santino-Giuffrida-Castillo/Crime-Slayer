@@ -7,7 +7,7 @@
 namespace asteroids
 {
 	void initGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets]);
-	void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets], float& count, Screen& actualScreen);
+	void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets], float& count, Screen& actualScreen, Texture2D background);
 	void checkIfPlayerOutScreen(Player& player);
 	void checkIfBulletOutScreen(Bullet bullet[maxBullets]);
 	void checkIfBigAsteroidOutScreen(BigAsteroid asteroids[maxBullets]);

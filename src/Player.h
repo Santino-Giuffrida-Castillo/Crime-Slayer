@@ -15,10 +15,19 @@ namespace asteroids
 		int lives;
 		int points;
 		int highScore = 0;
+		Texture2D texture;
+		Rectangle source;
+		Rectangle dest;
+		Vector2 origin;
+		Sound shootSound;
+		Sound deadSound;
+
 	};
 	Player initPlayer();
 	void movePlayer(Player& player);
 	void drawPlayer(Player player);
 	void shoot(Bullet bullet[maxBullets], Player player);
 	void showPlayerInfo(Player player);
+	void loadPlayerAssets();
+	void unloadPlayerAssets();
 }

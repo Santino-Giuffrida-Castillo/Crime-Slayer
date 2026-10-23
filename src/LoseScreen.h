@@ -4,5 +4,5 @@
 #include "Player.h"
 namespace asteroids
 {
-	void showLoseScreen(Screen& actualScreen, Player& player);
+	void showLoseScreen(Screen& actualScreen, Player& player, Font font);
 }

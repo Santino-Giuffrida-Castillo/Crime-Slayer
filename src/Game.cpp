@@ -32,7 +32,7 @@ namespace asteroids
 
 	}
 
-	void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets], float& count, Screen& actualScreen)
+	void playGame(Player& player, Bullet bullet[maxBullets], BigAsteroid asteroids[maxBullets], float& count, Screen& actualScreen, Texture2D background)
 	{
 
 		movePlayer(player);
@@ -50,9 +50,16 @@ namespace asteroids
 		checkIfPlayerIsLosing(player, actualScreen);
 		checkIfPlayerPaused(actualScreen);
 
-
-
 		ClearBackground(BLACK);
+		
+		DrawTexturePro(
+			background,
+			{ 0, 0, (float)background.width, (float)background.height },
+			{ 0, 0, (float)screenWidth, (float)screenHigh },
+			{ 0, 0 },
+			0.0f,
+			WHITE
+		);
 
 
 		drawPlayer(player);
@@ -202,6 +209,7 @@ namespace asteroids
 
 				if (distance <= player.radius + asteroid[i].radius)
 				{
+					PlaySound(player.deadSound);
 					player.lives--;
 					asteroid[i] = initAsteroid();
 				}
@@ -217,6 +225,7 @@ namespace asteroids
 
 					if (distance <= player.radius + asteroid[i].midAsteroids[j].radius)
 					{
+						PlaySound(player.deadSound);
 						player.lives--;
 						asteroid[i].midAsteroids[j] = initMidAsteroid(asteroid[i], j);
 					}
@@ -233,6 +242,7 @@ namespace asteroids
 
 						if (distance <= player.radius + asteroid[i].midAsteroids[j].littleAsteroids[k].radius)
 						{
+							PlaySound(player.deadSound);
 							player.lives--;
 							asteroid[i].midAsteroids[j].littleAsteroids[k] = initLittleAsteroid(asteroid[i].midAsteroids[j], k);
 						}
@@ -254,6 +264,7 @@ namespace asteroids
 					if (bullets[j].isActive && distance <= bullets[j].radius + asteroid[i].radius)
 					{
 						asteroid[i].isHit = true;
+						playAsteroidExplosion(1);
 						for (int k = 0; k < 2; k++)
 						{
 							asteroid[i].midAsteroids[k] = initMidAsteroid(asteroid[i], k);
@@ -282,6 +293,7 @@ namespace asteroids
 							if (bullets[j].isActive && distance <= bullets[j].radius + asteroid[i].midAsteroids[k].radius)
 							{
 								asteroid[i].midAsteroids[k].isHit = true;
+								playAsteroidExplosion(2);
 								for (int l = 0; l < 2; l++)
 								{
 									asteroid[i].midAsteroids[k].littleAsteroids[l] = initLittleAsteroid(asteroid[i].midAsteroids[k], l);
@@ -317,6 +329,7 @@ namespace asteroids
 								if (bullets[j].isActive && distance <= bullets[j].radius + asteroid[i].midAsteroids[k].littleAsteroids[l].radius && !asteroid[i].midAsteroids[k].littleAsteroids[l].isHit)
 								{
 									asteroid[i].midAsteroids[k].littleAsteroids[l].isHit = true;
+									playAsteroidExplosion(3);
 									player.points += 30;
 									bullets[j].isActive = false;
 								}
